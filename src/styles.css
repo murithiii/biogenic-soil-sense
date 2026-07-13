@@ -7,7 +7,7 @@
 
 /*
  * Biogenic Soil Sense — design system.
- * Semantic tokens for an AgTech marketing site: agriculture + GIS + science.
+ * Semantic tokens for an AgTech platform: agriculture + GIS + science.
  * Colors are stored as hex to match brand spec exactly.
  */
 
@@ -53,30 +53,88 @@
 
   --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(15, 23, 42, 0.08);
   --shadow-elevated: 0 4px 12px rgba(15, 23, 42, 0.06), 0 24px 48px -20px rgba(15, 23, 42, 0.18);
+  --shadow-float: 0 8px 16px -4px rgba(15, 23, 42, 0.08), 0 32px 64px -24px rgba(15, 23, 42, 0.22);
+
+  --animate-reveal-up: reveal-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-reveal-fade: reveal-fade 0.5s ease both;
+  --animate-marker-pulse: marker-pulse 2s ease-in-out infinite;
+  --animate-shimmer: shimmer 1.8s ease-in-out infinite;
+  --animate-float-slow: float-slow 6s ease-in-out infinite;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes marker-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.6;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 :root {
   --radius: 12px;
 
-  --background: #FAFAF7;
-  --surface: #FFFFFF;
-  --foreground: #1F2937;
+  --background: #fafaf7;
+  --surface: #ffffff;
+  --foreground: #1f2937;
 
-  --primary: #2E7D32;
-  --primary-foreground: #FFFFFF;
-  --primary-dark: #1B4332;
-  --primary-light: #66BB6A;
+  --primary: #2e7d32;
+  --primary-foreground: #ffffff;
+  --primary-dark: #1b4332;
+  --primary-light: #66bb6a;
 
-  --earth: #7A5C3E;
-  --harvest: #D4A017;
+  --earth: #7a5c3e;
+  --harvest: #d4a017;
 
-  --muted: #F1F3EF;
-  --muted-foreground: #6B7280;
-  --accent: #E8F1E9;
-  --success: #16A34A;
-  --destructive: #DC2626;
+  --muted: #f1f3ef;
+  --muted-foreground: #5b6b63;
+  --accent: #e8f1e9;
+  --success: #16a34a;
+  --destructive: #dc2626;
 
-  --border: #E5E7EB;
+  --border: #e5e7eb;
 }
 
 @layer base {
@@ -88,6 +146,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -99,7 +158,12 @@
     font-feature-settings: "ss01", "cv11";
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
     color: var(--color-foreground);
     letter-spacing: -0.02em;
@@ -111,6 +175,11 @@
     outline: 2px solid var(--color-primary);
     outline-offset: 3px;
     border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-primary) 20%, transparent);
+    color: var(--color-primary-dark);
   }
 }
 
@@ -141,7 +210,10 @@
   border: 1px solid var(--color-border);
   border-radius: 16px;
   box-shadow: var(--shadow-card);
-  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
 }
 
 @utility card-surface-hover {
@@ -152,10 +224,47 @@
   }
 }
 
+/* Topographic contour-line pattern — used on dark CTA / hero sections */
+@utility topo-pattern {
+  background-image:
+    repeating-radial-gradient(
+      circle at 20% 30%,
+      transparent 0,
+      transparent 38px,
+      color-mix(in oklab, currentColor 8%, transparent) 38px,
+      color-mix(in oklab, currentColor 8%, transparent) 40px
+    ),
+    repeating-radial-gradient(
+      circle at 80% 70%,
+      transparent 0,
+      transparent 52px,
+      color-mix(in oklab, currentColor 6%, transparent) 52px,
+      color-mix(in oklab, currentColor 6%, transparent) 54px
+    );
+}
+
+/* Subtle soil-grain texture for light section backgrounds */
+@utility grain-bg {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    color-mix(in oklab, var(--color-primary-dark) 5%, transparent) 1px,
+    transparent 0
+  );
+  background-size: 24px 24px;
+}
+
+/* Reveal-on-scroll animation trigger */
+@utility reveal {
+  opacity: 0;
+  animation: var(--animate-reveal-up);
+  animation-timeline: view();
+  animation-range: entry 0% entry 40%;
+}
+
 /* Leaflet tuning to match the design system */
 .leaflet-container {
   font-family: var(--font-sans);
-  background: #E9EEE7;
+  background: #e9eee7;
   border-radius: 16px;
 }
 .leaflet-control-zoom a {
@@ -169,4 +278,15 @@
 .leaflet-popup-content {
   margin: 12px 14px !important;
   font-size: 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

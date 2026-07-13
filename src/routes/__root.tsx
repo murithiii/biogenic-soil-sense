@@ -81,18 +81,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Biogenic Soil Sense turns scientific soil data into precise, farm-ready decisions. Soil analysis, land profiling and GIS mapping for modern agriculture.",
+          "Biogenic Soil Sense turns scientific soil data into precise, farm-ready decisions. Soil analysis, land profiling and GIS mapping for Sri Lankan agriculture.",
       },
       { name: "author", content: "Biogenic Soil Sense" },
       { name: "theme-color", content: "#2E7D32" },
       {
         property: "og:title",
-        content: "Biogenic Soil Sense — Scientific Soil Analysis & Land Profiling",
+        content: "Biogenic Soil Sense — Soil Intelligence for Sri Lankan Farms",
       },
       {
         property: "og:description",
         content:
-          "Turn soil data into smarter farming decisions with scientific analysis, land profiling and GIS mapping.",
+          "Lab-grade soil analysis, land profiling and GIS mapping for tea, paddy, coconut and spice lands across Sri Lanka.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

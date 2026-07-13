@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X, Leaf } from "lucide-react";
 
 const NAV = [
@@ -12,6 +12,8 @@ const NAV = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const mobileNavRef = useRef<HTMLElement | null>(null);
+  const closeBtnRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -25,6 +27,16 @@ export function SiteHeader() {
     return () => {
       document.body.style.overflow = "";
     };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    closeBtnRef.current?.focus();
+    return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
   return (
@@ -57,8 +69,7 @@ export function SiteHeader() {
               to={item.to}
               activeOptions={{ exact: item.to === "/" }}
               activeProps={{
-                className:
-                  "rounded-lg px-3 py-2 text-sm font-semibold text-primary-dark bg-accent",
+                className: "rounded-lg px-3 py-2 text-sm font-semibold text-primary-dark bg-accent",
               }}
               inactiveProps={{
                 className:
@@ -91,7 +102,11 @@ export function SiteHeader() {
       {open && (
         <div
           id="mobile-nav"
-          className="lg:hidden fixed inset-x-0 top-[64px] bottom-0 z-50 bg-background/98 backdrop-blur"
+          ref={mobileNavRef}
+          className="fixed inset-0 top-[64px] z-50 bg-background/98 backdrop-blur lg:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation menu"
         >
           <nav className="container-page flex flex-col gap-2 py-6" aria-label="Mobile">
             {NAV.map((item) => (
@@ -119,6 +134,13 @@ export function SiteHeader() {
             >
               Request Analysis
             </Link>
+            <button
+              ref={closeBtnRef}
+              onClick={() => setOpen(false)}
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-base font-semibold text-foreground"
+            >
+              <X className="h-5 w-5" /> Close menu
+            </button>
           </nav>
         </div>
       )}

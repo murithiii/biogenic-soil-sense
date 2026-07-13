@@ -14,12 +14,15 @@ import {
   Recycle,
   MapPin,
   Users,
+  type LucideIcon,
 } from "lucide-react";
 import heroSoil from "../assets/hero-soil.jpg";
 import fieldsAerial from "../assets/fields-aerial.jpg";
 import teamImg from "../assets/team.jpg";
 import { CTASection } from "../components/site/CTASection";
 import { FieldsMap, FIELDS } from "../components/site/FieldsMap";
+import { SectionHead } from "../components/site/SectionHead";
+import { Reveal } from "../components/site/Reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,20 +31,23 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Scientific soil analysis, land profiling and GIS mapping. Higher yields, less fertilizer waste, healthier soil.",
+          "Scientific soil analysis, land profiling and GIS mapping for Sri Lankan agriculture. Higher yields, less fertilizer waste, healthier soil.",
       },
-      { property: "og:title", content: "Biogenic Soil Sense — Soil Intelligence for Modern Farms" },
+      {
+        property: "og:title",
+        content: "Biogenic Soil Sense — Soil Intelligence for Sri Lankan Farms",
+      },
       {
         property: "og:description",
         content:
-          "From sample to recommendation — lab-grade soil analysis and GIS-driven insights for precision agriculture.",
+          "From sample to recommendation — lab-grade soil analysis and GIS-driven insights for precision agriculture across Sri Lanka.",
       },
     ],
   }),
   component: Home,
 });
 
-const SERVICES = [
+const SERVICES: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: FlaskConical,
     title: "Soil Analysis",
@@ -55,7 +61,7 @@ const SERVICES = [
   {
     icon: Sprout,
     title: "Nutrient Recommendations",
-    body: "Crop-specific fertilizer plans that cut waste and align with your yield targets.",
+    body: "Crop-specific fertilizer plans for tea, paddy, coconut and spice lands — cut waste, lift yield.",
   },
   {
     icon: Satellite,
@@ -86,15 +92,27 @@ const STEPS = [
 ];
 
 const BENEFITS = [
-  { icon: TrendingUp, title: "Higher yields", body: "Match inputs to what the soil actually needs." },
-  { icon: Wallet, title: "Reduced costs", body: "Cut over-fertilization by 20–40% on typical farms." },
+  {
+    icon: TrendingUp,
+    title: "Higher yields",
+    body: "Match inputs to what the soil actually needs.",
+  },
+  {
+    icon: Wallet,
+    title: "Reduced costs",
+    body: "Cut over-fertilization by 20–40% on typical farms.",
+  },
   { icon: Leaf, title: "Healthier soil", body: "Rebuild organic matter and biological activity." },
-  { icon: Recycle, title: "Sustainable farming", body: "Lower runoff and greenhouse-gas footprint." },
+  {
+    icon: Recycle,
+    title: "Sustainable farming",
+    body: "Lower runoff and greenhouse-gas footprint.",
+  },
 ];
 
 const STATS = [
   { value: "3,400+", label: "Fields analyzed" },
-  { value: "18", label: "Regions covered" },
+  { value: "9", label: "Provinces covered" },
   { value: "12 yrs", label: "Field experience" },
   { value: "99.2%", label: "Lab reproducibility" },
 ];
@@ -114,7 +132,7 @@ function Home() {
         />
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 bg-gradient-to-r from-black/75 via-black/55 to-black/25"
+          className="absolute inset-0 -z-10 bg-gradient-to-r from-black/80 via-black/60 to-black/30"
         />
         <div className="container-page relative pb-24 pt-20 sm:pb-32 sm:pt-28 lg:pb-40 lg:pt-36">
           <p className="eyebrow text-white/90">
@@ -124,9 +142,9 @@ function Home() {
           <h1 className="mt-4 max-w-4xl text-[42px] font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-[64px]">
             Transform soil data into smarter farming decisions.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-white/85 sm:text-xl">
+          <p className="mt-6 max-w-2xl text-lg text-white/90 sm:text-xl">
             Biogenic Soil Sense delivers lab-grade soil analysis, land profiling and GIS mapping so
-            farmers know exactly what their soil needs — season after season.
+            Sri Lankan farmers know exactly what their soil needs — season after season.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
@@ -146,7 +164,7 @@ function Home() {
           <dl className="mt-14 grid max-w-3xl grid-cols-2 gap-x-8 gap-y-6 border-t border-white/20 pt-8 sm:grid-cols-4">
             {STATS.map((s) => (
               <div key={s.label}>
-                <dt className="text-xs font-medium uppercase tracking-widest text-white/60">
+                <dt className="text-xs font-medium uppercase tracking-widest text-white/70">
                   {s.label}
                 </dt>
                 <dd className="mt-1 text-2xl font-bold text-white">{s.value}</dd>
@@ -157,31 +175,32 @@ function Home() {
       </section>
 
       {/* SERVICES */}
-      <section className="section-y">
+      <section className="section-y grain-bg">
         <div className="container-page">
-          <SectionHead
-            eyebrow="What we do"
-            title="A complete soil intelligence toolkit"
-            description="From sampling to prescription. Everything a modern farm needs to work with its soil, not against it."
-          />
+          <Reveal>
+            <SectionHead
+              eyebrow="What we do"
+              title="A complete soil intelligence toolkit"
+              description="From sampling to prescription. Everything a modern Sri Lankan farm needs to work with its soil, not against it."
+            />
+          </Reveal>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {SERVICES.map((s) => (
-              <article
-                key={s.title}
-                className="card-surface card-surface-hover flex flex-col gap-4 p-7"
-              >
-                <span className="grid h-12 w-12 place-items-center rounded-xl bg-accent text-primary-dark">
-                  <s.icon className="h-6 w-6" />
-                </span>
-                <h3 className="text-xl font-semibold">{s.title}</h3>
-                <p className="text-[15px] leading-relaxed text-muted-foreground">{s.body}</p>
-                <Link
-                  to="/contact"
-                  className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2"
-                >
-                  Learn more <ArrowRight className="h-4 w-4" />
-                </Link>
-              </article>
+            {SERVICES.map((s, i) => (
+              <Reveal key={s.title} delay={i * 80}>
+                <article className="card-surface card-surface-hover flex h-full flex-col gap-4 p-7">
+                  <span className="grid h-12 w-12 place-items-center rounded-xl bg-accent text-primary-dark">
+                    <s.icon className="h-6 w-6" />
+                  </span>
+                  <h3 className="text-xl font-semibold">{s.title}</h3>
+                  <p className="text-[15px] leading-relaxed text-muted-foreground">{s.body}</p>
+                  <Link
+                    to="/contact"
+                    className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition hover:gap-2"
+                  >
+                    Learn more <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -190,14 +209,16 @@ function Home() {
       {/* HOW IT WORKS */}
       <section className="section-y bg-muted/60">
         <div className="container-page">
-          <SectionHead
-            eyebrow="How it works"
-            title="Three steps from sample to season plan"
-            description="A clear, scientific process — no jargon, no black boxes."
-          />
+          <Reveal>
+            <SectionHead
+              eyebrow="How it works"
+              title="Three steps from sample to season plan"
+              description="A clear, scientific process — no jargon, no black boxes."
+            />
+          </Reveal>
           <ol className="mt-14 grid gap-6 lg:grid-cols-3">
             {STEPS.map((step, i) => (
-              <li key={step.title} className="relative">
+              <Reveal as="li" key={step.title} delay={i * 100} className="relative">
                 <div className="card-surface flex h-full flex-col gap-4 p-8">
                   <div className="flex items-center gap-4">
                     <span className="grid h-14 w-14 place-items-center rounded-2xl bg-primary text-primary-foreground shadow-card">
@@ -213,10 +234,10 @@ function Home() {
                 {i < STEPS.length - 1 && (
                   <div
                     aria-hidden
-                    className="hidden lg:block absolute top-1/2 -right-3 h-px w-6 bg-border"
+                    className="absolute -right-3 top-1/2 hidden h-px w-6 bg-border lg:block"
                   />
                 )}
-              </li>
+              </Reveal>
             ))}
           </ol>
         </div>
@@ -225,19 +246,20 @@ function Home() {
       {/* BENEFITS */}
       <section className="section-y">
         <div className="container-page">
-          <SectionHead
-            eyebrow="Why it matters"
-            title="Grow more. Waste less. Farm smarter."
-          />
+          <Reveal>
+            <SectionHead eyebrow="Why it matters" title="Grow more. Waste less. Farm smarter." />
+          </Reveal>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {BENEFITS.map((b) => (
-              <div key={b.title} className="card-surface card-surface-hover p-7">
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-[color:var(--color-harvest)]/15 text-[color:var(--color-harvest)]">
-                  <b.icon className="h-5 w-5" />
-                </span>
-                <h3 className="mt-5 text-lg font-semibold">{b.title}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{b.body}</p>
-              </div>
+            {BENEFITS.map((b, i) => (
+              <Reveal key={b.title} delay={i * 80}>
+                <div className="card-surface card-surface-hover h-full p-7">
+                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-[color:var(--color-harvest)]/15 text-[color:var(--color-harvest)]">
+                    <b.icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="mt-5 text-lg font-semibold">{b.title}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{b.body}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -245,25 +267,36 @@ function Home() {
 
       {/* WHY CHOOSE US — STATS */}
       <section className="section-y bg-[color:var(--color-primary-dark)] text-white">
-        <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
-          <div>
-            <p className="eyebrow text-[color:var(--color-primary-light)]">Why choose us</p>
-            <h2 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-[42px]">
-              Science-first. Farmer-tested. Field-proven.
-            </h2>
-            <p className="mt-4 text-lg text-white/80">
-              We combine soil chemistry, agronomy and GIS in one team — so every recommendation is
-              defensible, reproducible and ready for the field.
-            </p>
-          </div>
-          <dl className="grid grid-cols-2 gap-4 sm:grid-cols-2">
-            {STATS.map((s) => (
-              <div key={s.label} className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-                <dd className="text-4xl font-bold text-white">{s.value}</dd>
-                <dt className="mt-1 text-sm text-white/70">{s.label}</dt>
-              </div>
-            ))}
-          </dl>
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 topo-pattern text-white opacity-40"
+        />
+        <div className="container-page relative grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+          <Reveal>
+            <div>
+              <p className="eyebrow text-[color:var(--color-primary-light)]">Why choose us</p>
+              <h2 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-[42px]">
+                Science-first. Farmer-tested. Field-proven.
+              </h2>
+              <p className="mt-4 text-lg text-white/85">
+                We combine soil chemistry, agronomy and GIS in one team — so every recommendation is
+                defensible, reproducible and ready for the field.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <dl className="grid grid-cols-2 gap-4">
+              {STATS.map((s) => (
+                <div
+                  key={s.label}
+                  className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition hover:bg-white/10"
+                >
+                  <dd className="text-4xl font-bold text-white">{s.value}</dd>
+                  <dt className="mt-1 text-sm text-white/80">{s.label}</dt>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
         </div>
       </section>
 
@@ -271,13 +304,15 @@ function Home() {
       <section className="section-y">
         <div className="container-page">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <SectionHead
-              eyebrow="Featured tested fields"
-              title="See where our soil intelligence is at work"
-              description="A snapshot of recently analyzed farms across the region."
-              align="left"
-              inline
-            />
+            <Reveal>
+              <SectionHead
+                eyebrow="Featured tested fields"
+                title="See where our soil intelligence is at work"
+                description="A snapshot of recently analyzed farms across Sri Lanka."
+                align="left"
+                inline
+              />
+            </Reveal>
             <Link
               to="/fields"
               className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-sm font-semibold text-foreground transition hover:border-primary/40 hover:text-primary"
@@ -285,90 +320,100 @@ function Home() {
               View all tested fields <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="mt-10 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
-            <FieldsMap fields={featured} height={480} />
-            <div className="card-surface flex flex-col gap-3 p-6">
-              <p className="eyebrow">Recent activity</p>
-              <ul className="mt-2 divide-y divide-border">
-                {featured.map((f) => (
-                  <li key={f.id} className="flex items-start gap-3 py-3">
-                    <span className="mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-accent text-primary-dark">
-                      <MapPin className="h-4 w-4" />
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-semibold text-foreground">{f.name}</p>
-                      <p className="text-xs text-muted-foreground">
-                        {f.county} · {f.crop} · {f.areaHa} ha
-                      </p>
-                    </div>
-                    <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] font-semibold text-muted-foreground">
-                      {f.status}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+          <Reveal delay={100}>
+            <div className="mt-10 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+              <FieldsMap fields={featured} height={480} compact />
+              <div className="card-surface flex flex-col gap-3 p-6">
+                <p className="eyebrow">Recent activity</p>
+                <ul className="mt-2 divide-y divide-border">
+                  {featured.map((f) => (
+                    <li key={f.id} className="flex items-start gap-3 py-3">
+                      <span className="mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-accent text-primary-dark">
+                        <MapPin className="h-4 w-4" />
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-sm font-semibold text-foreground">{f.name}</p>
+                        <p className="truncate text-xs text-muted-foreground">
+                          {f.district} · {f.crop} · {f.areaHa} ha
+                        </p>
+                      </div>
+                      {f.healthIndex > 0 && (
+                        <div className="flex shrink-0 flex-col items-end">
+                          <span className="text-sm font-bold text-primary">{f.healthIndex}</span>
+                          <span className="text-[10px] text-muted-foreground">health idx</span>
+                        </div>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ABOUT PREVIEW */}
       <section className="section-y bg-muted/60">
         <div className="container-page grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div className="relative">
-            <img
-              src={teamImg}
-              alt="Biogenic Soil Sense agronomy team standing in a green field"
-              width={1400}
-              height={1000}
-              loading="lazy"
-              className="w-full rounded-3xl object-cover shadow-elevated"
-            />
-            <div className="absolute -bottom-6 -right-4 hidden rounded-2xl bg-surface p-5 shadow-elevated sm:block">
-              <div className="flex items-center gap-3">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary text-primary-foreground">
-                  <Users className="h-5 w-5" />
-                </span>
-                <div>
-                  <p className="text-sm font-semibold">30+ specialists</p>
-                  <p className="text-xs text-muted-foreground">agronomy · GIS · lab science</p>
+          <Reveal>
+            <div className="relative">
+              <img
+                src={teamImg}
+                alt="Biogenic Soil Sense agronomy team standing in a green field"
+                width={1400}
+                height={1000}
+                loading="lazy"
+                className="w-full rounded-3xl object-cover shadow-elevated"
+              />
+              <div className="absolute -bottom-6 -right-4 hidden rounded-2xl bg-surface p-5 shadow-elevated sm:block">
+                <div className="flex items-center gap-3">
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary text-primary-foreground">
+                    <Users className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <p className="text-sm font-semibold">30+ specialists</p>
+                    <p className="text-xs text-muted-foreground">agronomy · GIS · lab science</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div>
-            <p className="eyebrow">About Biogenic Soil Sense</p>
-            <h2 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-[40px]">
-              A team of scientists and agronomists building the soil intelligence layer for farming.
-            </h2>
-            <p className="mt-5 text-lg text-muted-foreground">
-              We started as a soil-science research group and grew into a full precision-agriculture
-              partner. Every recommendation we ship is grounded in real lab data and validated in
-              the field.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                to="/about"
-                className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3.5 text-sm font-semibold text-primary-foreground shadow-card transition hover:-translate-y-0.5"
-              >
-                Meet our team <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                to="/fields"
-                className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3.5 text-sm font-semibold text-foreground transition hover:border-primary/40"
-              >
-                See our work
-              </Link>
+          </Reveal>
+          <Reveal delay={100}>
+            <div>
+              <p className="eyebrow">About Biogenic Soil Sense</p>
+              <h2 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-[40px]">
+                A team of scientists and agronomists building the soil intelligence layer for Sri
+                Lankan farming.
+              </h2>
+              <p className="mt-5 text-lg text-muted-foreground">
+                We started as a soil-science research group and grew into a full
+                precision-agriculture partner. Every recommendation we ship is grounded in real lab
+                data and validated in the field.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3.5 text-sm font-semibold text-primary-foreground shadow-card transition hover:-translate-y-0.5"
+                >
+                  Meet our team <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  to="/fields"
+                  className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3.5 text-sm font-semibold text-foreground transition hover:border-primary/40"
+                >
+                  See our work
+                </Link>
+              </div>
+              <img
+                src={fieldsAerial}
+                alt=""
+                width={1600}
+                height={1000}
+                loading="lazy"
+                className="mt-8 hidden h-32 w-full rounded-2xl object-cover shadow-card lg:block"
+              />
             </div>
-            <img
-              src={fieldsAerial}
-              alt=""
-              width={1600}
-              height={1000}
-              loading="lazy"
-              className="mt-8 hidden h-32 w-full rounded-2xl object-cover shadow-card lg:block"
-            />
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -381,31 +426,5 @@ function Home() {
         secondary={{ to: "/fields", label: "Explore fields" }}
       />
     </>
-  );
-}
-
-function SectionHead({
-  eyebrow,
-  title,
-  description,
-  align = "center",
-  inline = false,
-}: {
-  eyebrow: string;
-  title: string;
-  description?: string;
-  align?: "left" | "center";
-  inline?: boolean;
-}) {
-  return (
-    <div
-      className={`${align === "center" ? "mx-auto text-center" : ""} ${inline ? "" : "max-w-2xl"}`}
-    >
-      <p className={`eyebrow ${align === "center" ? "justify-center" : ""}`}>{eyebrow}</p>
-      <h2 className="mt-3 text-3xl font-bold sm:text-4xl lg:text-[40px]">{title}</h2>
-      {description && (
-        <p className="mt-4 text-lg text-muted-foreground">{description}</p>
-      )}
-    </div>
   );
 }
