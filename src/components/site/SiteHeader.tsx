@@ -12,7 +12,7 @@ const NAV = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const mobileNavRef = useRef<HTMLElement | null>(null);
+  const mobileNavRef = useRef<HTMLDivElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
