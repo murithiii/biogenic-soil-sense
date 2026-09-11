@@ -1,41 +1,59 @@
 # Biogenic Soil Sense Redesign
 
-A modern, full-stack web application for monitoring and analyzing biogenic soil conditions with real-time data visualization and interactive mapping capabilities.
+A modern web application for monitoring and analyzing soil conditions with real-time data visualization and interactive mapping capabilities.
 
-## 🚀 [Try It Live on Lovable](https://lovable.dev/projects/ab3bed45-192d-4970-b401-e0b8178c4dc3)
+## 🚀 [Try It Live](https://biogenic-soil-sense.vercel.app/)
 
 Click the link above to see the application in action!
 
 ## 🌍 Overview
 
-Biogenic Soil Sense Redesign is a contemporary redesign of soil monitoring technology, providing environmental scientists, agricultural professionals, and researchers with an intuitive platform to track and analyze soil health metrics. Built with cutting-edge web technologies, it delivers real-time insights through interactive maps, data visualization, and comprehensive analytics.
+Biogenic Soil Sense is a soil monitoring platform providing environmental scientists, agricultural professionals, and researchers with an intuitive interface to track and analyze soil health metrics. Built with cutting-edge web technologies, it delivers real-time insights through interactive maps, data visualization, and comprehensive analytics.
 
 ## ✨ Key Features
 
-- **Interactive Mapping** - Real-time visualization of soil monitoring sites using Leaflet
+- **Interactive Mapping** - Real-time visualization of soil monitoring sites using React Leaflet
 - **Data Visualization** - Advanced charts and graphs powered by Recharts
 - **Responsive UI** - Beautiful, accessible interface built with Radix UI and Tailwind CSS
 - **Form Management** - Robust form handling with React Hook Form and Zod validation
 - **Real-time Updates** - Powered by TanStack React Query for efficient data fetching
-- **Modern Architecture** - Built on TanStack Start for optimal performance and scalability
+- **Modern Architecture** - Built on React + TanStack for optimal performance and scalability
 
 ## 🛠️ Tech Stack
 
 **Frontend:**
-- **Framework**: React 19 + TanStack Start
-- **Language**: TypeScript
+
+- **Framework**: React 19 + TypeScript
+- **Build Tool**: Vite
 - **Styling**: Tailwind CSS + Radix UI
 - **Routing**: TanStack Router
 - **State Management**: TanStack React Query
-- **Mapping**: Leaflet + React Leaflet
+- **Mapping**: React Leaflet
 - **Visualization**: Recharts
 - **Form Handling**: React Hook Form + Zod
-- **UI Components**: Pre-built Radix UI component library
 
 **Build Tools:**
+
 - Vite (fast bundler)
 - TypeScript
 - ESLint + Prettier
+
+## 📦 Installation & Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/murithiii/biogenic-soil-sense-redesign.git
+cd biogenic-soil-sense-redesign
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
 
 ## 📄 License
 
@@ -43,12 +61,14 @@ This project is open source and available under the MIT License.
 
 ## 👤 Author
 
-Created by [murithiii](https://github.com/murithiii)
+Created by [Brandon Murithi](https://github.com/murithiii)
 
-## 🤝 Support
+## 🔗 Links
 
-If you encounter any issues or have questions, please open an issue on GitHub.
+- **Live Demo**: https://biogenic-soil-sense.vercel.app/
+- **GitHub**: https://github.com/murithiii/biogenic-soil-sense-redesign
+- **Lovable Project**: https://lovable.dev/projects/ab3bed45-192d-4970-b401-e0b8178c4dc3
 
 ---
 
-**Built with ❤️ for environmental science and sustainable agriculture**
+**Built for environmental science and sustainable agriculture**
