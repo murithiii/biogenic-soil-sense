@@ -1,4 +1,4 @@
-# Biogenic Soil Sense Redesign
+# Biogenic Soil Sense
 
 A modern web application for monitoring and analyzing soil conditions with real-time data visualization and interactive mapping capabilities.
 
